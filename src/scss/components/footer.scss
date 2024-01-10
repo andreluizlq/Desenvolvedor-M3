@@ -1,0 +1,15 @@
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  color: $white;
+  background-color: $black;
+  padding: 6px 0;
+  margin-top: 25px;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
+  }
+}

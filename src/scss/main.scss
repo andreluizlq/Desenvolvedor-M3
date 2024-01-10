@@ -1,1 +1,6 @@
-@import "reset";
+@import "configs/configs.scss";
+@import "globals/reset.scss";
+@import "globals/global.scss";
+@import "components/header.scss";
+@import "components/footer.scss";
+@import "components/filters.scss";
