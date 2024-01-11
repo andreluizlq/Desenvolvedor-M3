@@ -1,0 +1,156 @@
+.content-block {
+  display: flex;
+  gap: 80px
+}
+
+.product-list {
+  width: 100%;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+  margin-bottom: 36px;
+
+  li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.ops-message {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-photo {
+      display: block;
+      width: 195px;
+      height: 293px;
+    }
+
+    .card-name {
+      color: $black;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .card-price {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        font-size: 16px;
+        line-height: 22px;
+
+        &:first-child {
+          font-weight: 700;
+          color: $black;
+        }
+
+        &:last-child {
+          font-weight: 400;
+          color: $gray2;
+        }
+      }
+    }
+
+    .card-content-size {
+      opacity: 0;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .card-size {
+        background-color: $black;
+        padding: 4px 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: $white;
+      }
+    }
+
+    &:hover .card-content-size {
+      opacity: 1;
+    }
+
+    .card-buy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 195px;
+      height: 33px;
+      margin-top: 14px;
+      background-color: $black;
+      color: $white;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      text-decoration: none;
+      transition: all .3s ease-in-out;
+
+      &:hover {
+        box-sizing: border-box;
+        border: 1px solid $black;
+        background-color: $white;
+        color: $black;
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  #products {
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  #products {
+    gap: 16px;
+    grid-template-columns: repeat(1, 1fr);
+
+    li {
+      &.ops-message {
+        max-width: none;
+      }
+
+      .card-photo {
+        width: 162px;
+        height: 242px;
+      }
+
+      .card-name {
+        margin: 8px 0;
+      }
+
+      .card-content-size {
+        display: none;
+      }
+
+      .card-buy {
+        width: 162px;
+        margin-top: 8px;
+      }
+    }
+  }
+}

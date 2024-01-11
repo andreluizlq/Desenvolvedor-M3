@@ -8,8 +8,8 @@
   <title>Desenvolvedor M3</title>
   <link rel="stylesheet" href="main.css" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/
-<link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+  <link rel=" preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
     rel="stylesheet">
@@ -34,23 +34,172 @@
 
   <main>
     <section class="wrapper">
-      <section>
-        <div class="title-wrap">
-          <div class="content">
-            <h2 class="title-category">Blusas</h2>
-
-            <div class="button-filters">
-              <button class="standard-filter filters-button-mobile">Filtrar</button>
-              <select name="order" id="order">
-                <option value="0" disabled selected value>Ordenar por:</option>
-                <option value="1">Mais Recentes</option>
-                <option value="2">Maior Preço</option>
-                <option value="3">Menor Preço</option>
-              </select>
+      <div class="content-wrapper">
+        <section>
+          <div class="title-wrap">
+            <div class="content">
+              <h2 class="title-category">Blusas</h2>
+              <div class="button-filters">
+                <button class="standard-filter filters-button-mobile">Filtrar</button>
+                <select name="order" id="order">
+                  <option value="0" disabled selected value>Ordenar</option>
+                  <option value="1">Mais Recentes</option>
+                  <option value="2">Maior Preço</option>
+                  <option value="3">Menor Preço</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section>
+          <div class="content-block">
+            <div class="filters">
+              <div class="content-filters">
+                <div class="hide">
+                  <details class="colors-filters" open>
+                    <summary class="colors-filters">Cores</summary>
+                    <ul>
+                      <li>
+                        <input id="yellow" class="custom-checkbox" name="yellow" type="checkbox">
+                        <label for="yellow" class="label-custom-checkbox">Amarelo</label>
+                      </li>
+                      <li>
+                        <input id="blue" class="custom-checkbox" name="blue" type="checkbox">
+                        <label for="blue" class="label-custom-checkbox">Azul</label>
+                      </li>
+                      <li>
+                        <input id="blue" class="custom-checkbox" name="blue" type="checkbox">
+                        <label for="blue" class="label-custom-checkbox">Azul</label>
+                      </li>
+                      <li>
+                        <input id="white" class="custom-checkbox" name="white" type="checkbox">
+                        <label for="white" class="label-custom-checkbox">Branco</label>
+                      </li>
+                      <li>
+                        <input id="gray" class="custom-checkbox" name="gray" type="checkbox">
+                        <label for="gray" class="label-custom-checkbox">Cinza</label>
+                      </li>
+                      <li>
+                        <input id="orange" class="custom-checkbox" name="orange" type="checkbox">
+                        <label for="orange" class="label-custom-checkbox">Laranja</label>
+                      </li>
+                      <li>
+                        <input id="black" class="custom-checkbox" name="black" type="checkbox">
+                        <label for="black" class="label-custom-checkbox">Preto</label>
+                      </li>
+                      <li>
+                        <input id="black" class="custom-checkbox" name="black" type="checkbox">
+                        <label for="black" class="label-custom-checkbox">Preto</label>
+                      </li>
+                    </ul>
+                  </details>
+                  <details class="size-filters" open>
+                    <summary class="size-filters">Tamanhos</summary>
+                    <ul>
+                      <li>
+                        <input type="checkbox" id="P" name="P" value="P">
+                        <label for="P" class="label-custom-checkbox">
+                          <span>P</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="M" name="M" value="M">
+                        <label for="M" class="label-custom-checkbox">
+                          <span>M</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="G" name="G" value="G">
+                        <label for="G" class="label-custom-checkbox">
+                          <span>G</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="GG" name="GG" value="GG">
+                        <label for="GG" class="label-custom-checkbox">
+                          <span>GG</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="U" name="U" value="U">
+                        <label for="U" class="label-custom-checkbox">
+                          <span>U</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="36" name="36" value="36">
+                        <label for="36" class="label-custom-checkbox">
+                          <span>36</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="38" name="38" value="38">
+                        <label for="38" class="label-custom-checkbox">
+                          <span>38</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="40" name="40" value="40">
+                        <label for="40" class="label-custom-checkbox">
+                          <span>40</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="42" name="42" value="42">
+                        <label for="42" class="label-custom-checkbox">
+                          <span>42</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="44" name="44" value="44">
+                        <label for="44" class="label-custom-checkbox">
+                          <span>44</span>
+                        </label>
+                      </li>
+                      <li>
+                        <input type="checkbox" id="46" name="46" value="46">
+                        <label for="46" class="label-custom-checkbox">
+                          <span>46</span>
+                        </label>
+                      </li>
+                    </ul>
+                  </details>
+                  <details class="price-filters" open>
+                    <summary class="price-filters">Preço</summary>
+                    <ul>
+                      <li>
+                        <input id="0-50" class="checkbox-custom" name="0-50" type="checkbox">
+                        <label for="0-50" class="label-custom-checkbox">de R$0 até R$50</label>
+                      </li>
+                      <li>
+                        <input id="51-150" class="checkbox-custom" name="51-150" type="checkbox">
+                        <label for="51-150" class="label-custom-checkbox">de R$51 até R$150</label>
+                      </li>
+                      <li>
+                        <input id="151-300" class="checkbox-custom" name="151-300" type="checkbox">
+                        <label for="151-300" class="label-custom-checkbox">de R$151 até R$300</label>
+                      </li>
+                      <li>
+                        <input id="301-500" class="checkbox-custom" name="301-500" type="checkbox">
+                        <label for="301-500" class="label-custom-checkbox">de R$301 até R$500</label>
+                      </li>
+                      <li>
+                        <input id="500-more" class="checkbox-custom" name="500-more" type="checkbox">
+                        <label for="500-more" class="label-custom-checkbox">a partir de R$500</label>
+                      </li>
+                    </ul>
+                  </details>
+                </div>
+              </div>
+            </div>
+            <div class="product-list">
+              <ul id="products"></ul>
+              <button id="more-product">Carregar mais</button>
+            </div>
+          </div>
+        </section>
+      </div>
     </section>
   </main>
 
