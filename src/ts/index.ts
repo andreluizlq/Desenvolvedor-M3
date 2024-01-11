@@ -10,6 +10,7 @@ const checkPrices = document.querySelectorAll(
   '.price-filters input[type="checkbox"]'
 );
 const moreProductButton = document.getElementById("more-product");
+const orderSelect = document.getElementById("order");
 
 // Carregar produtos do server
 function loadProducts(callback: (products: IProduct[]) => void) {
@@ -50,18 +51,27 @@ function filterProducts(
   selectedPrices: string[]
 ): IProduct[] {
   return products.filter((product) => {
-    const hasColor =
+    const valueColor =
       selectedColors.length === 0 || selectedColors.includes(product.color);
-    const hasSize =
+    const valueSize =
       selectedSizes.length === 0 ||
       product.size.some((size) => selectedSizes.includes(size));
-    const hasPrices =
+    const valuePrice =
       selectedPrices.length === 0 ||
       selectedPrices.includes(getPriceRange(product.price));
-
-    return hasColor && hasSize && hasPrices;
+    return valueColor && valueSize && valuePrice;
   });
 }
+// Eventos dos filtros(checkbox)
+checkColors.forEach((check) => {
+  check.addEventListener("change", updateProductList);
+});
+checkSizes.forEach((check) => {
+  check.addEventListener("change", updateProductList);
+});
+checkPrices.forEach((check) => {
+  check.addEventListener("change", updateProductList);
+});
 
 // Faixa de preço com base no preço dos produtos
 function getPriceRange(price: number): string {
@@ -92,7 +102,7 @@ function createProductHTML(product: IProduct): HTMLElement {
 }
 
 // Atualização de filtragem de produtos
-function updateProductList(orderOption: any) {
+function updateProductList(sortingOrder: any) {
   const selectedColors = getCheckValues(checkColors);
   const selectedSizes = getCheckValues(checkSizes);
   const selectedPrices = getCheckValues(checkPrices);
@@ -109,6 +119,18 @@ function updateProductList(orderOption: any) {
         selectedSizes,
         selectedPrices
       );
+
+      // filtragem por ordenação
+      if (sortingOrder === "1") {
+        filteredProducts.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+      } else if (sortingOrder === "2") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      } else if (sortingOrder === "3") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      }
+
       if (filteredProducts.length !== 0) {
         // Criação e renderização da lista sem filtros
         products.forEach((product: IProduct) => {
@@ -134,5 +156,43 @@ function updateProductList(orderOption: any) {
   });
 }
 
+// Adição de evento ao elemento order.
+orderSelect.addEventListener("change", () => {
+  const selectedOrder = (orderSelect as HTMLInputElement).value;
+  if (selectedOrder !== "0") {
+    updateProductList(selectedOrder);
+  }
+});
+
 // Atualização de lista de produtos ao inicializar
 document.addEventListener("DOMContentLoaded", updateProductList);
+
+// Modal
+document.addEventListener("DOMContentLoaded", function () {
+  var modal = document.getElementById("modal");
+  var openBtn = document.getElementById("filters-button-mobile");
+  var closeBtn = document.getElementById("filter-close-button");
+  var filtrarBtn = document.getElementById("aplicar-filtro");
+
+  // Abrir modal ao clicar no botão
+  openBtn.addEventListener("click", function () {
+    modal.style.display = "block";
+  });
+
+  // Fechar modal ao clicar no botão de fechar
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Fechar modal ao clicar no botão de fechar
+  filtrarBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Fechar modal ao clicar fora do conteúdo modal
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
