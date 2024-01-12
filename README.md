@@ -51,3 +51,5 @@ $ yarn start
 ```
 
 The app will be available for access on your browser at http://localhost:5000
+
+Contact email: andreluizlq1@gmail.com
