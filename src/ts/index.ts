@@ -11,11 +11,13 @@ const checkPrices = document.querySelectorAll(
 );
 const moreProductButton = document.getElementById("more-product");
 const orderSelect = document.getElementById("order");
+const itemsPerPage = 6;
+let visibleItems = itemsPerPage;
+let listSize = 0;
 
 // Carregar produtos do server
 function loadProducts(callback: (products: IProduct[]) => void) {
   const url: string = `${baseUrl}`;
-
   fetch(url)
     .then((response) => {
       if (!response.ok) {
@@ -50,18 +52,21 @@ function filterProducts(
   selectedSizes: string[],
   selectedPrices: string[]
 ): IProduct[] {
+  const newArraySize = selectedSizes.map((item) => item.split("_")[0]);
+  const newArrayPrince = selectedPrices.map((item) => item.split("_")[0]);
   return products.filter((product) => {
     const valueColor =
       selectedColors.length === 0 || selectedColors.includes(product.color);
     const valueSize =
-      selectedSizes.length === 0 ||
-      product.size.some((size) => selectedSizes.includes(size));
+      newArraySize.length === 0 ||
+      product.size.some((size) => newArraySize.includes(size));
     const valuePrice =
-      selectedPrices.length === 0 ||
-      selectedPrices.includes(getPriceRange(product.price));
+      newArrayPrince.length === 0 ||
+      newArrayPrince.includes(getPriceRange(product.price));
     return valueColor && valueSize && valuePrice;
   });
 }
+
 // Eventos dos filtros(checkbox)
 checkColors.forEach((check) => {
   check.addEventListener("change", updateProductList);
@@ -83,7 +88,7 @@ function getPriceRange(price: number): string {
   return;
 }
 
-// Criando elemento HTML
+// Criando elemento HTML card
 function createProductHTML(product: IProduct): HTMLElement {
   const productHTML: HTMLElement = document.createElement("li");
   productHTML.innerHTML = `
@@ -102,11 +107,10 @@ function createProductHTML(product: IProduct): HTMLElement {
 }
 
 // Atualização de filtragem de produtos
-function updateProductList(sortingOrder: any) {
+function updateProductList(sortingOrder?: any) {
   const selectedColors = getCheckValues(checkColors);
   const selectedSizes = getCheckValues(checkSizes);
   const selectedPrices = getCheckValues(checkPrices);
-
   loadProducts((products) => {
     const productList = document.getElementById("products");
     if (productList) {
@@ -119,6 +123,13 @@ function updateProductList(sortingOrder: any) {
         selectedSizes,
         selectedPrices
       );
+
+      // Qual o tamanho do array renderizado?
+      if (filteredProducts.length != 0) {
+        listSize = filteredProducts.length;
+      } else {
+        listSize = products.length;
+      }
 
       // filtragem por ordenação
       if (sortingOrder === "1") {
@@ -133,14 +144,15 @@ function updateProductList(sortingOrder: any) {
 
       if (filteredProducts.length !== 0) {
         // Criação e renderização da lista sem filtros
-        products.forEach((product: IProduct) => {
+        products.slice(0, visibleItems).forEach((product: IProduct) => {
           const productDiv: HTMLElement = createProductHTML(product);
           productList.appendChild(productDiv);
         });
+
         // Limpando productList
         productList.innerHTML = "";
         // Criação e renderização da lista filtrada
-        filteredProducts.forEach((product: IProduct) => {
+        filteredProducts.slice(0, visibleItems).forEach((product: IProduct) => {
           const productDiv: HTMLElement = createProductHTML(product);
           productList.appendChild(productDiv);
         });
@@ -154,6 +166,27 @@ function updateProductList(sortingOrder: any) {
       }
     }
   });
+}
+
+// Função para gerenciar o "carregar mais"
+const loadMore = () => {
+  const subtractionList = listSize - visibleItems;
+  if (moreProductButton) {
+    if (subtractionList <= itemsPerPage) {
+      moreProductButton.style.display = "none";
+    }
+    if (subtractionList >= itemsPerPage) {
+      visibleItems += itemsPerPage;
+    } else {
+      visibleItems += subtractionList;
+    }
+    updateProductList();
+  }
+};
+
+// Adicionar um ouvinte de evento ao botão de "carregar mais"
+if (moreProductButton) {
+  moreProductButton.addEventListener("click", loadMore);
 }
 
 // Adição de evento ao elemento order.

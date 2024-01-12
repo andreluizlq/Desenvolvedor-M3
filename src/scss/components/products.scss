@@ -116,6 +116,31 @@
   }
 }
 
+#more-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $white;
+  width: 175px;
+  height: 35px;
+  border: none;
+  margin: 0 auto 50px auto;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    box-sizing: border-box;
+    border: 1px solid $primary;
+    background-color: $white;
+    color: $primary;
+    transition: all .3s ease-in-out;
+  }
+}
+
 @media (max-width: 1024px) {
   #products {
     gap: 20px;
