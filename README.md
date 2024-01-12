@@ -1,7 +1,7 @@
 # Customer registration 
 Front-end challenge passed by the company M3. 
 
-![alt text]([https://github.com/andreluizlq/front-end-challenge-mtd/blob/master/public/testeImg.PNG](https://github.com/andreluizlq/Desenvolvedor-M3/blob/master/layout/Desenvolvedor-M3.png))
+![alt text](https://github.com/andreluizlq/Desenvolvedor-M3/blob/master/layout/Desenvolvedor-M3.png?raw=true)
 
 # Tecnologies
 
